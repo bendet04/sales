@@ -12,6 +12,9 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
+        "livewire/livewire": "^2.5",
+        "maatwebsite/excel": "^3.1",
+        "realrashid/sweet-alert": "^4.0",
         "spatie/laravel-permission": "^4.3"
     },
     "require-dev": {

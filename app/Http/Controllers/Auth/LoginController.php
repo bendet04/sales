@@ -40,12 +40,13 @@ class LoginController extends Controller
     }
 
     protected function authenticated(Request $request, $user){
-        if($user->hasRole('sales-user')){
-            return redirect()->route('sales-user');
+        if($user->hasRole('sales')){
+            return redirect()->route('add-order');
         }
 
-        if($user->hasRole('sales-admin-1')){
-            return redirect()->route('sales-admin-1');
+        if($user->hasRole('admin-1') || $user->hasRole('admin-2') || $user->hasRole('technician') ){
+            return redirect()->route('order');
         }
+        
     }
 }

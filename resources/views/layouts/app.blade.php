@@ -18,6 +18,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- FA -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/v4-shims.css">
+
+    <!-- Livewire style -->
+    @livewireStyles
 </head>
 <body>
     <div id="app">
@@ -75,9 +82,17 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 px-4">
             @yield('content')
         </main>
     </div>
+    @livewireScripts
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    @include('sweetalert::alert')
 </body>
 </html>
+<script>
+    window.addEventListener('swal',function(e){ 
+        Swal.fire(e.detail);
+    });
+</script>
