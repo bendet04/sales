@@ -24,10 +24,13 @@ class Order extends Component
         "name" => "",
         "order_number" => "",
         "start_date" => "",
-        "end_date" => ""
+        "end_date" => "",
+        "order_status" => "",
     ];
 
-    protected $updatesQueryString = ['page'];
+    protected $updatesQueryString  = [
+        'page'=> ['except' => 1]
+    ];
 
     public function mount(){
         $this->loadList();
@@ -57,28 +60,20 @@ class Order extends Component
             });
         }
 
-        if(auth()->user()->can('admin lvl 1')){
-            $objects->where('order_status', 1);
+        if(!empty($this->filter["order_status"])){
+            $objects->where('order_status', $this->filter['order_status'] );
         }
+
          $objects = $objects->paginate($this->items_per_page);
 
          $this->paginator = $objects->toArray();
 
+         Log::info('page '.json_encode( $this->page));
+         Log::info('paginator '.json_encode( $this->paginator));
+
          $this->orders = $objects->items();
     }
     
-    // public function format($orders)
-    // {
-    //     $orders->map(function($order) {
-    //         $order['order_status'] = OrderStatus::toString($order['order_status']);
-    //         $order['payment_scheme'] = PaymentType::toString($order['payment_scheme']);
-    //         $order['payment_status'] = PaymentStatus::toString($order['payment_status']);
-    //         return $order;
-    //     });
-
-    //     return $orders;
-    // }
-
     public function applyPagination($action, $value, $options=[]){
 
         if( $action == "previous_page" && $this->page > 1){

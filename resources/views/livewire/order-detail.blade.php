@@ -128,6 +128,7 @@
             <div class="card-body">
                 <div class="row">
                     @can('admin lvl 1')
+                    @if($order_detail->order_status == 1)
                     <div class="col-6 mb-3">
                         <button class="btn btn-primary btn-block"
                             wire:click="changeStatus({{$order_detail->id}},3)">Terima</button>
@@ -140,8 +141,10 @@
                         <button class="btn btn-info btn-block" wire:click="changeStatus({{$order_detail->id}},2)">Verif
                             Admin lvl 2</button>
                     </div>
+                    @endif
                     @endcan
                     @can('admin lvl 2')
+                    @if($order_detail->order_status == 2)
                     <div class="col-6 mb-3">
                         <button class="btn btn-primary btn-block"
                             wire:click="changeStatus({{$order_detail->id}},3)">Terima</button>
@@ -150,6 +153,7 @@
                         <button class="btn btn-danger btn-block"
                             wire:click="changeStatus({{$order_detail->id}},7)">Tolak</button>
                     </div>
+                    @endif
                     @endcan
                     @can('technician')
                     @if($order_detail->order_status == 3)

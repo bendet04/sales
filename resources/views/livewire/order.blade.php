@@ -28,8 +28,27 @@
                             placeholder="Tanggal Akhir">
                     </div>
                 </div>
+
                 <div class="col-3">
                     <div class="form-group">
+                        <label class="floating-label">Order Status</label>
+                        <select class="form-control" wire:model.defer="filter.order_status">
+                            <option value="">Pilih</option>
+                            <option value="1">Verifikasi Admin lvl 1</option>
+                            <option value="2">Persetujuan Admin Lvl 2</option>
+                            <option value="3">Jadwal Pemasangan</option>
+                            <option value="8">Pemasangan</option>
+                            <option value="4">Order Selesai</option>
+                            <option value="5">Ditolak Admin lvl 1</option>
+                            <option value="6">Ditolak Admin lvl 2</option>
+                            <option value="7">Order Dibatalkan</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <div class="form-group">
+                    <label class="floating-label btn-block"> </label>
                         <button class="btn btn-primary" style="width:200px;" wire:click="loadList">Cari</button>
                     </div>
                 </div>
